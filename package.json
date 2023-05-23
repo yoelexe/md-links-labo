@@ -3,5 +3,12 @@
   "version": "0.1.0",
   "engines": {
     "node": ">=16.x"
+  },
+  "dependencies": {
+    "eslint": "^8.41.0",
+    "fs": "^0.0.1-security",
+    "markdown-it": "^13.0.1",
+    "stylelint": "^15.6.2",
+    "test": "^3.3.0"
   }
 }
