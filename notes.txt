@@ -15,3 +15,6 @@ se ejecuta de forma asíncrona.
 -> process.argv
 >  utiliza para pasar los argumentos al proceso node.js 
 > cuando se ejecuta en la línea de comandos.
+
+-> regex (http(|s)):\/\/(.*)\/(.*)
+-> regex ^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$
