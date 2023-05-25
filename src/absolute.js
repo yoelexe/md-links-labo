@@ -1,7 +1,9 @@
 const fs = require('fs'); // file system
 const path = require('path');
+const clc = require('cli-color');
+const process = require('process');
 
-//
+// TODO: Saber si la ruta existe
 const existPath = (routePath) => {
   if (fs.existsSync(routePath)) {
     console.log('existe path')
@@ -12,12 +14,13 @@ const existPath = (routePath) => {
 
 // const r = new RegExp('^(?:[a-z]+:)?//', 'i');
 
+// TODO: Convertir el path
 const convertPath = (routePath) => {
   if (path.isAbsolute(routePath)) {
-    return console.log('ruta absoluta: ', routePath)
+    return console.log(clc.red.bgWhite.underline('ruta absoluta: ', routePath))
   } else {
     const pathRelative = path.resolve(routePath)
-    return console.log('ruta convertida: ', pathRelative)
+    return console.log(clc.blue.blackBright.underline('ruta convertida: ', pathRelative))
   }
 }
 
@@ -26,7 +29,7 @@ const convertPath = (routePath) => {
 // convertPath(routePath);
 console.log(path.isAbsolute('/contratacion/openxchange/'));
 console.log(path.isAbsolute('https://contratacion/openxchange/'));
-console.log(`ejemplo de ruta absoluta: ${__dirname}`)
+console.log(clc.red(`ejemplo de ruta absoluta: ${__dirname}`))
 
 // testeo
 // r.test('//cdn.ejemplo.com/lib.js'); // true - URL absoluta, relativa al protocolo
@@ -37,44 +40,72 @@ console.log(convertPath('./fileName.txt'))
 // ? ¿Cuál es la diferencia de / y su inversa?
 
 // TODO: Leer el directorio
-const checkDirectory = (routePath) => {
+const learnDirectory = (routePath) => {
   // ? readdirSync
   // ? statsSync
   // qué es direct?
   // isDirectory
-  const learnRoute = fs.readdirSync(routePath);
+  const learnRoute = fs.readdirSync(routePath, "utf8");
+  // return learnRoute;
   console.log('hola', learnRoute);
 }
 
 // TODO: Saber si es un directorio
-const checkOptions = (routePath) => {
+const checkDirectory = (routePath) => {
   return fs.statSync(routePath).isDirectory();
 }
 
-checkDirectory(__dirname);
-console.log('es un directorio', checkOptions('./archive'));
+//learnDirectory(__dirname);
+learnDirectory('./archive')
+console.log('es un directorio', checkDirectory('./archive'));
 
+// TODO: Saber si un archivo
 const checkFile = (routePath) => {
   return fs.statSync(routePath).isFile();
 }
 
 console.log(checkFile('./archive/archive.txt'), 'es un archivo');
 
-// validar que sea md
 
+// TODO: Validar que tenga la extensión .md
 const validateMd = (routePath) => {
   return path.extname(routePath) === '.md'
 }
 
 console.log(validateMd('./archive/myfile.md'), 'tiene la extensión .md')
 
+// TODO: Operador Ternario
+
+const saveArray = (routePath) => {
+  let array = [];
+
+  if(checkFile(routePath) && validateMd(routePath)) {
+    array.push(routePath)
+  } else {
+    console.log('por el momento no se guarda nada')
+  }
+
+  return array;
+}
+
+console.log(saveArray('./archive/private/other.md'))
+
+//! 
+const args = process.argv;
+  
+console.log("number of arguments is "+args.length);
+  
+args.forEach((val, index) => {
+    console.log(`${index}: ${val}`);
+});
 
 
 module.exports = {
-  convertPath,
   existPath,
+  convertPath,
+  learnDirectory,
   checkDirectory,
-  checkOptions,
   checkFile,
-  validateMd
+  validateMd,
+  saveArray
 }

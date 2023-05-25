@@ -5,6 +5,7 @@
     "node": ">=16.x"
   },
   "dependencies": {
+    "cli-color": "^2.0.3",
     "eslint": "^8.41.0",
     "fs": "^0.0.1-security",
     "markdown-it": "^13.0.1",

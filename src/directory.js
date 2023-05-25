@@ -1,6 +1,7 @@
 // check a file exists
 const fs = require('fs');
 const path = require('path');
+const { checkDirectory, learnDirectory} = require('./absolute.js');
 
 /* const path = __dirname + '/file.text';
 
@@ -10,26 +11,34 @@ if (fs.existsSync(path)) {
   console.error('File not exists')
 } */
 
-const checkDirectory = (routePath) => {
-  // ? readdirSync
+const otherFunction = (routePath) => {
+  // * readdirSync
   const learnRoute = fs.readdirSync(routePath);
   // console.log(learnRoute);
   console.log("\nCurrent directory filenames:");
-  learnRoute.forEach(file => {
-  console.log(file);
+  learnRoute.forEach((file) => {
+  // console.log(file);
+  // ? statSync
+  // path.join() -> para unir las rutas
+  const joinPath = path.join(routePath, file)
+  // console.log(joinPath)
+  
+
 });
 
-  /* learnRoute.forEach((routes) => {
-    const absolutePath = path.join(routePath, routes);
-    const stats = fs.statSync(absolutePath);
-    if (stats.isDirectory()) {
-      checkDirectory(absolutePath);
-    } else {
-      console.log(absolutePath)
-    }
-  }) */
-}
+/*
+const statsPath = fs.statSync(joinPath);
+  // console.log(statsPath)
+  if (statsPath.isDirectory()) {
+    otherFunction(joinPath)
+  } else {
+    console.log(joinPath)
+  }
+*/
 
+}
+// devolver información sobre el archivo o directorio dado.
+// stat -> estadisticas de un directorio
 const existsFile = (path) => {
   return new Promise((resolve, reject) => {
     fs.stat(file, (err, stats) => {
@@ -47,15 +56,15 @@ const existsFile = (path) => {
 }
 
 // checkDirectory(__dirname.replace(/\\/g, '/') + '/file.text')
-checkDirectory(__dirname);
+otherFunction('./archive');
 // ? ENOENT
 
-path.extname('index.html')
+console.log('podemos retornar la extensión', path.extname('index.html'));
 // return .html
 // ? existsSync
 // ? readFile
 
 module.exports = {
-  checkDirectory,
+  otherFunction,
   existsFile
 }
