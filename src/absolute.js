@@ -46,8 +46,8 @@ const learnDirectory = (routePath) => {
   // qué es direct?
   // isDirectory
   const learnRoute = fs.readdirSync(routePath, "utf8");
-  // return learnRoute;
-  console.log('hola', learnRoute);
+  return learnRoute;
+  // console.log('hola', learnRoute);
 }
 
 // TODO: Saber si es un directorio
@@ -99,6 +99,20 @@ args.forEach((val, index) => {
     console.log(`${index}: ${val}`);
 });
 
+//* no sé
+
+// extraer los archivos .md
+const trayendoFiles = (routePath) => {
+  const data = learnDirectory(routePath)
+  let arrayFiles = data.filter((element) => {
+    if (validateMd(element)) {
+      return element
+    }
+  })
+  return arrayFiles
+}
+
+console.log(trayendoFiles('./archive'))
 
 module.exports = {
   existPath,

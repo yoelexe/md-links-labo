@@ -11,6 +11,7 @@ if (fs.existsSync(path)) {
   console.error('File not exists')
 } */
 
+// entraer los links (en un array) por cada archivo .md
 const otherFunction = (routePath) => {
   // * readdirSync
   const learnRoute = fs.readdirSync(routePath);
@@ -21,20 +22,13 @@ const otherFunction = (routePath) => {
   // ? statSync
   // path.join() -> para unir las rutas
   const joinPath = path.join(routePath, file)
-  // console.log(joinPath)
-  
+  console.log(joinPath)
+  const statsPath = fs.statSync(joinPath);
+  if(statsPath.isDirectory()){
+    otherFunction(joinPath)
+  } 
 
 });
-
-/*
-const statsPath = fs.statSync(joinPath);
-  // console.log(statsPath)
-  if (statsPath.isDirectory()) {
-    otherFunction(joinPath)
-  } else {
-    console.log(joinPath)
-  }
-*/
 
 }
 // devolver información sobre el archivo o directorio dado.
@@ -55,7 +49,6 @@ const existsFile = (path) => {
   });
 }
 
-// checkDirectory(__dirname.replace(/\\/g, '/') + '/file.text')
 otherFunction('./archive');
 // ? ENOENT
 
@@ -63,6 +56,7 @@ console.log('podemos retornar la extensión', path.extname('index.html'));
 // return .html
 // ? existsSync
 // ? readFile
+// ? readFileSync
 
 module.exports = {
   otherFunction,
