@@ -1,10 +1,10 @@
-const mdLinks = require('../');
+const {
+  existPath
+} = require('../src/absolute.js');
 
 
-describe('mdLinks', () => {
-
-  it('should...', () => {
-    console.log('FIX ME!');
+describe('absolute', () => {
+  it('existPath is a function', () => {
+    expect(typeof existPath).toBe('function')
   });
-
 });

@@ -1,7 +1,7 @@
 // check a file exists
 const fs = require('fs');
 const path = require('path');
-const { checkDirectory, learnDirectory} = require('./absolute.js');
+const { checkDirectory, learnDirectory} = require('./absolute');
 
 /* const path = __dirname + '/file.text';
 
@@ -16,13 +16,13 @@ const otherFunction = (routePath) => {
   // * readdirSync
   const learnRoute = fs.readdirSync(routePath);
   // console.log(learnRoute);
-  console.log("\nCurrent directory filenames:");
+  // console.log("\nCurrent directory filenames:");
   learnRoute.forEach((file) => {
   // console.log(file);
   // ? statSync
   // path.join() -> para unir las rutas
   const joinPath = path.join(routePath, file)
-  console.log(joinPath)
+  console.log('joinPath', joinPath)
   const statsPath = fs.statSync(joinPath);
   if(statsPath.isDirectory()){
     otherFunction(joinPath)
@@ -49,7 +49,7 @@ const existsFile = (path) => {
   });
 }
 
-otherFunction('./archive');
+otherFunction('../resource');
 // ? ENOENT
 
 console.log('podemos retornar la extensión', path.extname('index.html'));
