@@ -33,3 +33,14 @@ hasta que ya no tiene que hacerlo.
 console.log(path.isAbsolute('/contratacion/openxchange/'));
 console.log(path.isAbsolute('https://contratacion/openxchange/'));
 console.log(`ejemplo de ruta absoluta: ${__dirname}`)
+
+=> https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
+
+
+// ? readdirSync
+  // ? statsSync
+  // qué es direct?
+  // isDirectory
+
+Función declarada -> la podemos invocar antes de que sea declarada, esto en JS se conoce como hoisting
+Función expresada -> debe ser declarada antes de ser invocada

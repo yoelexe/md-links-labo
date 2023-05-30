@@ -1,7 +1,6 @@
 const fs = require("fs"); // file system
 const path = require("path");
 // const clc = require('cli-color');
-const process = require("process");
 
 const {
   checkFile,
@@ -15,23 +14,25 @@ const {verifyPath} = require('./verifyPath.js')
 const saveArray = (routePath) => {
   let array = [];
 
-  if (verifyPath(checkFile(routePath))) {
-    array.push(routePath);
+  const resultPath = verifyPath(routePath)
+
+  if (checkFile(resultPath) && validateMd(resultPath)) {
+    array.push(resultPath);
   }
   
-  if (checkDirectory(routePath)) {
-    const geDirectory = learnDirectory(routePath);
+  if (checkDirectory(resultPath)) {
+    const geDirectory = learnDirectory(resultPath);
     geDirectory.forEach((file) => {
-      const joinPath = path.join(routePath, file);
+      const joinPath = path.join(resultPath, file);
       array = array.concat(saveArray(joinPath))
-      console.log(array)
+      // console.log(array)
       
     });
-  } 
+  }
 
   return array;
 };
-console.log('saveArray', saveArray('../resource'));
+console.log('recursividad', saveArray('../resource'));
 module.exports = {
   saveArray,
 };

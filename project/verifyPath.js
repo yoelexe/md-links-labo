@@ -2,22 +2,18 @@ const fs = require('fs'); // file system
 const path = require('path');
 
 const verifyPath = (routePath) => {
-  if (fs.existsSync(routePath)) {
-    // console.log('existe path')
-    if (path.isAbsolute(routePath)) {
-      // console.log('ruta absoluta: ', routePath)
-      return routePath
-    } else {
-      const pathRelative = path.resolve(routePath)
-      // console.log('ruta convertida: ', pathRelative);
-      return pathRelative
-    }
+  if (!fs.existsSync(routePath)) {
+    return 'la ruta no existe'
+    
+  } else if (path.isAbsolute(routePath)) {
+    return routePath
   } else {
-    return 'error';
+    const pathRelative = path.resolve(routePath)
+    return pathRelative
   }
 }
 
-console.log(verifyPath(__dirname))
+console.log(verifyPath('../resource'))
 
 
 module.exports = {
