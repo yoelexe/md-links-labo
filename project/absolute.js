@@ -4,17 +4,17 @@ const path = require('path');
 const process = require('process');
 
 // TODO: Saber si la ruta existe
-const existPath = (routePath) => {
+/* const existPath = (routePath) => {
  if (fs.existsSync(routePath)) {
     console.log('existe path')
  } else {
     console.log('no existe path')
   }
-}
+} */
 
 
 // TODO: Convertir el path
-const convertPath = (routePath) => {
+/* const convertPath = (routePath) => {
   if (path.isAbsolute(routePath)) {
     console.log('ruta absoluta: ', routePath)
     return routePath
@@ -23,18 +23,13 @@ const convertPath = (routePath) => {
     console.log('ruta convertida: ', pathRelative);
     return pathRelative
   }
-}
+} */
 
 // ? ¿Cuál es la diferencia de / y su inversa?
 
 // TODO: Leer el directorio
 const learnDirectory = (routePath) => {
-  // ? readdirSync
-  // ? statsSync
-  // qué es direct?
-  // isDirectory
   const learnRoute = fs.readdirSync(routePath);
-  // console.log('hola', learnRoute);
   return learnRoute;
 }
 
@@ -45,15 +40,15 @@ const checkDirectory = (routePath) => {
 }
 
 // learnDirectory(__dirname);
-learnDirectory(__dirname)
-console.log('es un directorio', checkDirectory('../resource')); 
+// learnDirectory(__dirname)
+// console.log('es un directorio', checkDirectory('../resource')); 
 
 // TODO: Saber si un archivo
 const checkFile = (routePath) => {
   return fs.statSync(routePath).isFile();
 }
 
-console.log(checkFile('../resource/archive.txt'), 'es un archivo');
+// console.log(checkFile('../resource/archive.txt'), 'es un archivo');
 
 
 // TODO: Validar que tenga la extensión .md
@@ -61,7 +56,7 @@ const validateMd = (routePath) => {
   return path.extname(routePath) === '.md'
 }
 
-console.log(validateMd('../resource/myfile.md'), 'tiene la extensión .md')
+// console.log(validateMd('../resource/myfile.md'), 'tiene la extensión .md')
 
 // TODO: Operador Ternario
 
@@ -75,7 +70,7 @@ const saveArray = (routePath) => {
   return array;
 }
 
-console.log('saveArray', saveArray('../resource'))
+// console.log('saveArray', saveArray('../resource'))
 
 //! 
 const args = process.argv;
