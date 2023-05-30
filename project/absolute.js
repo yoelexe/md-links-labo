@@ -97,8 +97,6 @@ const trayendoFiles = (routePath) => {
 console.log(trayendoFiles('../resource'))
 
 module.exports = {
-  existPath,
-  convertPath,
   learnDirectory,
   checkDirectory,
   checkFile,

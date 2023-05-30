@@ -24,6 +24,7 @@ hasta que ya no tiene que hacerlo.
 
 // const r = new RegExp('^(?:[a-z]+:)?//', 'i');
 // const hola = process.argv[2].replace(/\\/g, '/');
+/\[([^\[]+)\](\(.*\))/gm
 
 // testeo
 // r.test('//cdn.ejemplo.com/lib.js'); // true - URL absoluta, relativa al protocolo
@@ -44,3 +45,5 @@ console.log(`ejemplo de ruta absoluta: ${__dirname}`)
 
 Función declarada -> la podemos invocar antes de que sea declarada, esto en JS se conoce como hoisting
 Función expresada -> debe ser declarada antes de ser invocada
+
+spread js
