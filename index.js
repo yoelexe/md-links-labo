@@ -7,8 +7,8 @@ new Promise((resolve, reject)=> {
   if (!verifyPath(path)) {
     return reject(`La ruta ${path} no existe`)
   } else {
-    const verify = verifyPath(path);
-    const save = saveArray(verify)
+    /* const verify = verifyPath(path);
+    const save = saveArray(verify) */
 
     console.log(save)
 
@@ -18,6 +18,8 @@ new Promise((resolve, reject)=> {
     ? usar la función de extraer links
     ? no sé q poner en options
     */
+
+    //! si no hay contenido dentro del documento?
   }
 })
 

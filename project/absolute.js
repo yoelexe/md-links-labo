@@ -29,8 +29,8 @@ const process = require('process');
 
 // TODO: Leer el directorio
 const learnDirectory = (routePath) => {
-  const learnRoute = fs.readdirSync(routePath);
-  return learnRoute;
+  return fs.readdirSync(routePath);
+  // return learnRoute;
 }
 
 // TODO: Saber si es un directorio
@@ -60,7 +60,7 @@ const validateMd = (routePath) => {
 
 // TODO: Operador Ternario
 
-const saveArray = (routePath) => {
+/* const saveArray = (routePath) => {
   let array = [];
 
   if(checkFile(routePath) && validateMd(routePath)) {
@@ -68,23 +68,23 @@ const saveArray = (routePath) => {
   }
 
   return array;
-}
+} */
 
 // console.log('saveArray', saveArray('../resource'))
 
 //! 
-const args = process.argv;
+/* const args = process.argv;
   
 console.log("number of arguments is "+args.length);
   
 args.forEach((val, index) => {
     console.log(`${index}: ${val}`);
-});
+}); */
 
 //* no sé
 
 // extraer los archivos .md
-const trayendoFiles = (routePath) => {
+/* const trayendoFiles = (routePath) => {
   const data = learnDirectory(routePath)
   let arrayFiles = data.filter((element) => {
     if (validateMd(element)) {
@@ -94,13 +94,11 @@ const trayendoFiles = (routePath) => {
   return arrayFiles
 }
 
-console.log(trayendoFiles('../resource'))
+console.log(trayendoFiles('../resource')) */
 
 module.exports = {
   learnDirectory,
   checkDirectory,
   checkFile,
   validateMd,
-  saveArray,
-  trayendoFiles
 }

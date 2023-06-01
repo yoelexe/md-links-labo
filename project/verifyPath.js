@@ -13,9 +13,6 @@ const verifyPath = (routePath) => {
   }
 }
 
-console.log(verifyPath('../resource'))
-
-
 module.exports = {
   verifyPath
 }
