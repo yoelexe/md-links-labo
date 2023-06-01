@@ -33,6 +33,11 @@ const learnDirectory = (routePath) => {
   // return learnRoute;
 }
 
+// TODO: Leer el archivo
+const learnFile = (routePath) => {
+  return fs.readFile(routePath, 'utf-8');
+}
+
 // TODO: Saber si es un directorio
 const checkDirectory = (routePath) => {
   const element= fs.statSync(routePath).isDirectory();
@@ -101,4 +106,5 @@ module.exports = {
   checkDirectory,
   checkFile,
   validateMd,
+  learnFile
 }

@@ -1,8 +1,10 @@
 const fs = require('fs')
 const saveArray = require('./saveArray.js');
+// const learnFile = require('./absolute.js')
 const markdown = require('markdown-it');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom
+const {verifyPath} = require('./verifyPath.js')
 
 /* const abc = (routePath) => {
   // asíncrona
@@ -14,10 +16,15 @@ const { JSDOM } = jsdom
   }) 
 } */
 
+/* const learnFile = (routePath) => {
+  return fs.readFile(routePath, 'utf8');
+}
+ */
 // TODO: Extraer los links de los archivos .md
 const getFile = (routePath) => {
 
-  fs.readFile(routePath, 'utf8', (err, data) => {
+  const resultPath = verifyPath(routePath)
+  fs.readFile(resultPath, 'utf8', (err, data) => {
     if (err) {
       console.log('hola', err) 
     } else {
@@ -27,21 +34,21 @@ const getFile = (routePath) => {
       const linkMatch = data.match(regex);
 
       if(linkMatch !== null){
-        const result = linkMatch.map((e) => {
+        const newArray = linkMatch.map((e) => {
           return{
             href: e.slice(e.indexOf(']') + 2, -1),
             text: e.slice(e.indexOf('[') + 1, e.indexOf(']')),
-            file: routePath
+            file: resultPath
           }
         });
 
-        return console.log(result);
+        return console.log(newArray);
       }
     }
   }) 
 }
 
-console.log(getFile('C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\private\\other.md' ))
+console.log(getFile('../resource/myfile.md'))
 
 module.exports = {
   getFile
