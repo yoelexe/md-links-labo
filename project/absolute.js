@@ -78,13 +78,13 @@ const validateMd = (routePath) => {
 // console.log('saveArray', saveArray('../resource'))
 
 //! 
-/* const args = process.argv;
+const args = process.argv;
   
 console.log("number of arguments is "+args.length);
   
 args.forEach((val, index) => {
     console.log(`${index}: ${val}`);
-}); */
+});
 
 //* no sé
 
