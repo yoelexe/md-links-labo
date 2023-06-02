@@ -1,6 +1,4 @@
-const fs = require("fs"); // file system
 const path = require("path");
-// const clc = require('cli-color');
 
 const {
   checkFile,
@@ -11,6 +9,8 @@ const {
 
 const {verifyPath} = require('./verifyPath.js')
 
+// TODO: Retorna un array uniendo las rutas
+// TODO: Usando { recursividad }
 const saveArray = (routePath) => {
   let array = [];
 
@@ -24,15 +24,14 @@ const saveArray = (routePath) => {
     const geDirectory = learnDirectory(resultPath);
     geDirectory.forEach((file) => {
       const joinPath = path.join(resultPath, file);
-      array = array.concat(saveArray(joinPath))
-      // console.log(array)
-      
+      array = array.concat(saveArray(joinPath))      
     });
   }
-
   return array;
 };
+
 console.log('recursividad', saveArray('../resource'));
+
 module.exports = {
   saveArray,
 };

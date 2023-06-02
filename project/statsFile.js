@@ -1,13 +1,11 @@
-// const fetch = require('node-fetch');
 const axios = require('axios');
-const {getFile} = require('./getFile.js');
-const { saveArray } = require('./saveArray.js');
 
-const statsFile = (links) => {
+// TODO: Devoler las estadisticas de cada link con axios.get()
+const statsFile = (routePath) => {
   return new Promise((resolve, reject) => {
     const results = [];
 
-    const processLink = (link) => {
+    const viewLink = (link) => {
       return axios.get(link.href)
         .then((response) => {
           const result = {
@@ -24,19 +22,19 @@ const statsFile = (links) => {
             href: link.href,
             text: link.text,
             file: link.file,
-            sstatus: error.response ? 404 : 'Error 404',
+            status: error.response ? 404 : 'error',
             ok: 'fail'
           };
           results.push(result);
         });
     };
 
-    const linkPromises = [];
-    for (const link of links) {
-      linkPromises.push(processLink(link));
+    const otherArray = [];
+    for (let i = 0; i < routePath.length; i++) {
+      otherArray.push(viewLink(routePath[i]));
     }
 
-    Promise.all(linkPromises)
+    Promise.all(otherArray)
       .then(() => {
         resolve(results);
       })
@@ -45,30 +43,30 @@ const statsFile = (links) => {
       });
   });
 };
-const links = [
+const routePath = [
   {
     href: 'https://miro.com/app/board/uXjVMWUhOO0=/',
     text: 'Miro',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\private\\other.md'
+    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'
   },
   {
     href: '#historia-de-usuario-2',
     text: 'Historia de Usuario 2.',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\private\\other.md'
+    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'
   },
   {
     href: 'https://github.com/yoelexe/',
     text: 'Github',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\private\\other.md'
+    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'
   },
   {
     href: 'https://www.adasdasdgfdyhgfretef.com/',
     text: 'Google',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\private\\other.md'
+    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'
   },
 ];
 
-statsFile(links)
+statsFile(routePath)
   .then(results => {
     console.log(results);
   })
@@ -76,16 +74,6 @@ statsFile(links)
     console.error('Error al procesar los enlaces:', error);
   });
 
-// TODO: Función que retorne las estadisticas del enlace
-const getStats = (routePath) => {
-
-}
-
-// TODO: Función que retorne estadisticas con los enlaces rotos
-
-console.log('statsFile', statsFile('../resource/myfile.md'))
-
 module.exports = {
-  statsFile,
-  getStats
+  statsFile
 };

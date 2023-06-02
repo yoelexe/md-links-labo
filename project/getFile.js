@@ -1,26 +1,6 @@
 const fs = require("fs");
-const saveArray = require("./saveArray.js");
-// const learnFile = require('./absolute.js')
-const markdown = require("markdown-it");
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
 const { verifyPath } = require("./verifyPath.js");
-const axios = require("axios");
 
-/* const abc = (routePath) => {
-  // asíncrona
-  fs.readFile(routePath, 'utf8', (err, data) => {
-    if (err) {
-      console.log('hola', err) 
-    }   
-    return console.log('leyendo el archivo', data)
-  }) 
-} */
-
-/* const learnFile = (routePath) => {
-  return fs.readFile(routePath, 'utf8');
-}
- */
 // TODO: Extraer los links de los archivos .md
 const getFile = (routePath) => {
   return new Promise((resolve, reject) => {
