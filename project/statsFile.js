@@ -2,46 +2,39 @@ const axios = require('axios');
 
 // TODO: Devoler las estadisticas de cada link con axios.get()
 const statsFile = (routePath) => {
-  return new Promise((resolve, reject) => {
-    const results = [];
+  const results = [];
 
-    const viewLink = (link) => {
-      return axios.get(link.href)
-        .then((response) => {
-          const result = {
-            href: link.href,
-            text: link.text,
-            file: link.file,
-            status: response.status,
-            ok: 'ok'
-          };
-          results.push(result);
-        })
-        .catch((error) => {
-          const result = {
-            href: link.href,
-            text: link.text,
-            file: link.file,
-            status: error.response ? 404 : 'error',
-            ok: 'fail'
-          };
-          results.push(result);
-        });
-    };
-
-    const otherArray = [];
-    for (let i = 0; i < routePath.length; i++) {
-      otherArray.push(viewLink(routePath[i]));
-    }
-
-    Promise.all(otherArray)
-      .then(() => {
-        resolve(results);
+  const viewLink = (link) => {
+    return axios.get(link.href)
+      .then((response) => {
+        const result = {
+          href: link.href,
+          text: link.text,
+          file: link.file,
+          status: response.status,
+          message: 'ok'
+        };
+        results.push(result);
       })
       .catch((error) => {
-        reject(error);
+        const result = {
+          href: link.href,
+          text: link.text,
+          file: link.file,
+          status: error.response ? 404 : 'error',
+          message: 'fail'
+        };
+        results.push(result);
       });
-  });
+  };
+
+  const otherArray = routePath.map(viewLink);
+
+  return Promise.all(otherArray)
+    .then(() => results)
+    .catch((error) => {
+      throw error;
+    });
 };
 const routePath = [
   {
