@@ -1,31 +1,23 @@
 // const {existPath} = require('./src/absolute');
-const verifyPath = require('./project/verifyPath.js');
-const saveArray = require('./project/saveArray.js');
+const { verifyPath } = require('./project/verifyPath.js');
+const { saveArray } = require('./project/saveArray.js');
+const { getFile } = require('./project/getFile.js');
+const { statsFile } = require('./project/statsFile.js');
+// require('./resource')
 
 const mdLinks = (path, options) => {
   return new Promise((resolve, reject) => {
-    if (!verifyPath(path)) {
-      return reject(`La ruta ${path} existe`)
-    } else {
-      /* const verify = verifyPath(path);
-      const save = saveArray(verify) */
-  
-      return resolve(`La ruta falla`)
-  
-      /*
-      ? usar length para saber si hay mas de un archivo.md
-      ? recorrerlos
-      ? usar la función de extraer links
-      ? no sé q poner en options
-      */
-  
-      //! si no hay contenido dentro del documento?
+    if (verifyPath(path)) {
+      const verify = verifyPath(path)
+      const save = saveArray(verify)
+      console.log(save)
+    } else{
+      return reject('la ruta no es válida')
     }
   })
 }
 
-// mdLinks(__dirname)
-
+// console.log(mdLinks('./resource/myfile.md'))
 
 
 module.exports = {

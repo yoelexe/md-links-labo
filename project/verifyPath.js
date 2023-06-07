@@ -10,7 +10,7 @@ const verifyPath = (routePath) => {
   }
 }
 
-// console.log(verifyPath('../ayuda'))
+// console.log(verifyPath('../resource/myfile.md'))
 
 module.exports = {
   verifyPath

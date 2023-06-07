@@ -72,7 +72,7 @@ const routePath = [
 ]
 
 
-console.log(getBroke(routePath))
+console.table(getBroke(routePath))
 
 module.exports = {
   getStats,
