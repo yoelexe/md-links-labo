@@ -28,6 +28,7 @@ const statsFile = (routePath) => {
       });
   };
 
+  //? devuelve un nuevo Array
   const otherArray = routePath.map(viewLink);
 
   return Promise.all(otherArray)

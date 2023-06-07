@@ -2,16 +2,15 @@ const fs = require('fs'); // file system
 const path = require('path');
 
 const verifyPath = (routePath) => {
-  if (!fs.existsSync(routePath)) {
-    return 'la ruta no existe'
-    
-  } else if (path.isAbsolute(routePath)) {
-    return routePath
+  if (fs.existsSync(routePath)) {
+    // console.log('La ruta existe');
+    return path.isAbsolute(routePath) ? routePath : path.resolve(routePath);
   } else {
-    const pathRelative = path.resolve(routePath)
-    return pathRelative
+    return 'la ruta no existe'
   }
 }
+
+// console.log(verifyPath('../ayuda'))
 
 module.exports = {
   verifyPath

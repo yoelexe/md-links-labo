@@ -21,6 +21,23 @@ const getStats = (routePath) => {
   return total;
 };
 
+const getBroke = (routePath) => {
+  const broke = routePath.reduce((count, path) => {
+    if (path.message === 'fail') {
+      return count + 1
+    }
+    return count
+  },0);
+
+  const total = {
+    total: routePath.length,
+    unique: new Set(routePath.map(( href ) => href)).size,
+    broken: broke
+  };
+
+  return total;
+};
+
 
 
 const routePath = [
@@ -55,8 +72,9 @@ const routePath = [
 ]
 
 
-console.table(getStats(routePath))
+console.log(getBroke(routePath))
 
 module.exports = {
-  getStats
+  getStats,
+  getBroke
 }

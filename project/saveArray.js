@@ -30,7 +30,7 @@ const saveArray = (routePath) => {
   return array;
 };
 
-console.log('recursividad', saveArray('../resource'));
+// console.log('recursividad', saveArray('../resource'));
 
 module.exports = {
   saveArray,

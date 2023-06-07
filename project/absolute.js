@@ -22,7 +22,8 @@ const checkDirectory = (routePath) => {
 
 // TODO: Saber si un archivo
 const checkFile = (routePath) => {
-  return fs.statSync(routePath).isFile();
+  const element = fs.statSync(routePath).isFile();
+  return element
 }
 
 // TODO: Validar que tenga la extensión .md
@@ -32,13 +33,13 @@ const validateMd = (routePath) => {
 
 
 //! 
-const args = process.argv;
+/* const args = process.argv;
   
 console.log("number of arguments is "+args.length);
   
 args.forEach((val, index) => {
     console.log(`${index}: ${val}`);
-});
+}); */
 
 module.exports = {
   learnDirectory,

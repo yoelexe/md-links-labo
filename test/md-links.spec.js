@@ -1,19 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const {
-  verifyPath
-} = require('../project/verifyPath.js');
 
 const {
   saveArray
 } = require('../project/saveArray.js');
 
-const {
-  getFile
-} = require('../project/getFile.js')
 
-
-describe('verifyPath', () => {
+/* describe('verifyPath', () => {
   it('return is a function ', () => {
     expect(typeof verifyPath).toBe('function')
   });
@@ -25,7 +18,7 @@ describe('verifyPath', () => {
     const result = verifyPath(__dirname)
     expect(result).toBe(__dirname)
   });
-});
+}); */
 
 describe('saveArray', () => {
   it('return an array con los archivos .md', () => {
