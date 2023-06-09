@@ -18,7 +18,7 @@ const getStats = (routePath) => {
 
   total.unique = set.size;
 
-  return total;
+  return console.table(total);
 };
 
 const getBroke = (routePath) => {
@@ -40,7 +40,7 @@ const getBroke = (routePath) => {
 
 
 
-const routePath = [
+/* const routePath = [
   {
     href: '#historia-de-usuario-2',
     text: 'Historia de Usuario 2.',
@@ -72,7 +72,7 @@ const routePath = [
 ]
 
 
-console.table(getBroke(routePath))
+console.table(getBroke(routePath)) */
 
 module.exports = {
   getStats,

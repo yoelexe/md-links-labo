@@ -37,7 +37,7 @@ const statsFile = (routePath) => {
       throw error;
     });
 };
-const routePath = [
+/* const routePath = [
   {
     href: 'https://miro.com/app/board/uXjVMWUhOO0=/',
     text: 'Miro',
@@ -66,7 +66,7 @@ statsFile(routePath)
   })
   .catch(error => {
     console.error('Error al procesar los enlaces:', error);
-  });
+  }); */
 
 module.exports = {
   statsFile

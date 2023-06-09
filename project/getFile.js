@@ -30,16 +30,28 @@ const getFile = (routePath) => {
   });
 };
 
-getFile("../resource/myfile.md")
+/* const ejemplo = [
+  'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\myfile.md',
+  'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\private\\other.md'
+] */
+
+
+const usingFlat = (path) => {
+  const result = path.map(file => getFile(file))
+  return Promise.all(result).then(res => res.flat())
+}
+
+/* getFile('../resource/myfile.md')
   .then((data) => {
     console.log(data);
   })
   .catch((error) => {
     console.error("Error al leer el archivo:", error);
-  });
+  }); */
 
-// console.log(getFile('../resource/private/other.md'))
+// console.log(getFile('../resource/myfile.md'))
 
 module.exports = {
   getFile,
+  usingFlat
 };
