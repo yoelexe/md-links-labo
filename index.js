@@ -1,27 +1,36 @@
-// const {existPath} = require('./src/absolute');
-const verifyPath = require('./project/verifyPath.js');
-const saveArray = require('./project/saveArray.js');
+const {
+  verifyPath,
+  saveArray,
+  usingFlat,
+  statsFile,
+  getStats,
+  getBroke
+} = require('./functions.js');
 
-const mdLinks = (path, options) => 
-new Promise((resolve, reject)=> {
-  if (!verifyPath(path)) {
-    return reject(`La ruta ${path} no existe`)
-  } else {
-    const verify = verifyPath(path);
-    const save = saveArray(verify)
-
-    console.log(save)
-
-    /*
-    ? usar length para saber si hay mas de un archivo.md
-    ? recorrerlos
-    ? usar la función de extraer links
-    ? no sé q poner en options
-    */
-  }
-})
-
-mdLinks('./resource')
+const mdLinks = (path, options) => {
+  return new Promise((resolve, reject) => {
+    if (verifyPath(path)) {
+      const final = saveArray(path)
+      usingFlat(final)
+      .then((response) => {
+        if(options.validate  && !options.stats){
+          resolve(statsFile(response))
+        }else if(options.stats && !options.validate ){
+          resolve(getStats(response))
+        }else if(options.stats && options.validate){
+          resolve(getBroke(response))
+        }else {
+          resolve(response)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    } else{
+      reject('la ruta no es válida')
+    }
+  })
+}
 
 module.exports = {
   mdLinks
