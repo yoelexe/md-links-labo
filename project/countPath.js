@@ -18,7 +18,7 @@ const getStats = (routePath) => {
 
   total.unique = set.size;
 
-  return console.table(total);
+  return total;
 };
 
 const getBroke = (routePath) => {

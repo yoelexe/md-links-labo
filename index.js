@@ -24,12 +24,14 @@ const mdLinks = (path, options) => {
       /* const get = usingFlat(final) */
       usingFlat(final)
       .then((response) => {
-        if(options.validate){
+        if(options.validate  && !options.stats){
           resolve(statsFile(response))
-        }else if(options.stats){
+        }else if(options.stats && !options.validate ){
           resolve(getStats(response))
         }else if(options.stats && options.validate){
           resolve(getBroke(response))
+        }else {
+          resolve(getFile(response))
         }
       })
       .catch((err) => {
