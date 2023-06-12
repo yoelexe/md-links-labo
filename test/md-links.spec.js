@@ -1,11 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-
-const { saveArray } = require('../project/saveArray.js');
-const { verifyPath } = require('../project/verifyPath.js');
-const { getFile } = require('../project/getFile.js');
-const { mdLinks } = require('../index.js')
-const { getStats, getBroke } = require('../project/countPath.js')
+const axios = require('axios');
+const { 
+  saveArray,
+  verifyPath,
+  getFile,
+  getStats,
+  getBroke,
+  usingFlat
+ } = require('../functions.js');
+const { mdLinks } = require('../index.js');
 
 //! Orden de las funciones:
 //* verifyPath
@@ -22,7 +24,7 @@ describe('verifyPath', () => {
   });
   it('return "la ruta no existe" ', () => {
     const result = verifyPath('../ayuda')
-    expect(result).toBe('la ruta no existe')
+    expect(result).toBe('error')
   });
   it('return la ruta absoluta si es absoluta ', () => {
     const result = verifyPath(__dirname)

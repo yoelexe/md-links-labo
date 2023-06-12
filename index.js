@@ -1,10 +1,20 @@
 // const {existPath} = require('./src/absolute');
-const { verifyPath } = require('./project/verifyPath.js');
+/* const { verifyPath } = require('./project/verifyPath.js');
 const { saveArray } = require('./project/saveArray.js');
 const { getFile, usingFlat } = require('./project/getFile.js');
 const { statsFile } = require('./project/statsFile.js');
-const { getStats, getBroke } = require('./project/countPath.js');
+const { getStats, getBroke } = require('./project/countPath.js'); */
 // require('./resource')
+
+const {
+  verifyPath,
+  saveArray,
+  usingFlat,
+  statsFile,
+  getStats,
+  getBroke
+} = require('./functions.js');
+
 
 //! Orden de las funciones:
 //* verifyPath
@@ -14,6 +24,20 @@ const { getStats, getBroke } = require('./project/countPath.js');
 //* counPath -> estadisticas
 //* cliPath -> CLI
 
+/* const path = process.argv[2];
+const validate = process.argv.filter((element) => element === '--validate').length > 0
+const stats = process.argv.filter((element) => element === '--stats').length > 0
+const options = {
+  validate: validate,
+  stats: stats,
+} */
+/* const path = process.argv[2];
+const validate = process.argv.filter((element) => element === '--validate').length > 0
+const stats = process.argv.filter((element) => element === '--stats').length > 0
+const options = {
+  validate: validate,
+  stats: stats,
+} */
 
 //? encadenar promesas
 const mdLinks = (path, options) => {
@@ -31,7 +55,7 @@ const mdLinks = (path, options) => {
         }else if(options.stats && options.validate){
           resolve(getBroke(response))
         }else {
-          resolve(getFile(response))
+          resolve(response)
         }
       })
       .catch((err) => {
@@ -45,6 +69,21 @@ const mdLinks = (path, options) => {
 }
 
 // node console.log(mdLinks('./resource/myfile.md'))
+
+/* mdLinks(path, options).then((response) => {
+  console.log(response)
+})
+.catch((err) => {
+  console.log(err)
+}) */
+
+/* mdLinks(path, options)
+.then((response) => {
+  console.log(response)
+})
+.catch((err) => {
+  console.error(err)
+}) */
 
 
 module.exports = {

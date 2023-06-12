@@ -1,5 +1,4 @@
-const { mdLinks } = require('../index.js');
-// const { getStats, getBroke } = require('./countPath.js');
+const { mdLinks } = require('./index.js');
 const path = process.argv[2];
 const validate = process.argv.filter((element) => element === '--validate').length > 0
 const stats = process.argv.filter((element) => element === '--stats').length > 0
@@ -8,11 +7,10 @@ const options = {
   stats: stats,
 }
 
-// ('../resource/myfile.md');
-
-mdLinks(path, options).then((response) => {
+mdLinks(path, options)
+.then((response) => {
   console.log(response)
 })
 .catch((err) => {
   console.error(err)
-})
+}) 
