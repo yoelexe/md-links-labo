@@ -5,18 +5,54 @@ const {
   getFile,
   getStats,
   getBroke,
-  usingFlat
+  statsFile
  } = require('../functions.js');
 const { mdLinks } = require('../index.js');
+const { describe } = require('test');
 
-//! Orden de las funciones:
-//* verifyPath
-//* saveArray -> guardar en un array las rutas
-//* getFile -> extraer links
-//* statsFile -> peticion http con axios
-//* counPath -> estadisticas
-//* cliPath -> CLI
+jest.mock('axios');
 
+describe('statsFile', () => {
+  test('statsFile should return an array of results', () => {
+    // Mockear la función axios.get
+    axios.get = jest.fn();
+  
+    // Configurar el comportamiento mock para la función axios.get
+    axios.get
+      .mockResolvedValueOnce({ status: 200 }) // Mock para una respuesta exitosa (status 200)
+      .mockRejectedValueOnce({ response: { status: 404 } }) // Mock para una respuesta de error (status 404)
+      .mockRejectedValueOnce(new Error('Network Error')); // Mock para un error de red
+  
+    // Llamar a la función statsFile
+    return statsFile([
+      { href: 'https://github.com/yoelexe/', text: 'Github', file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'},
+      { href: 'https://www.adasdasdgfdyhgfretef.com/', text: 'Google', file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'}
+    ]).then(result => {
+      // Verificar el resultado esperado
+      expect(result).toEqual([
+        {
+          href: 'https://github.com/yoelexe/',
+          text: 'Github',
+          file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md',
+          status: 200,
+          message: 'ok'
+        },
+        {
+          href: 'https://www.adasdasdgfdyhgfretef.com/',
+          text: 'Google',
+          file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md',
+          status: 404,
+          message: 'fail'
+        }
+      ]);
+  
+      // Verificar que la función axios.get haya sido llamada con los argumentos esperados
+      expect(axios.get).toHaveBeenCalledWith('https://github.com/yoelexe/');
+      expect(axios.get).toHaveBeenCalledWith('https://www.adasdasdgfdyhgfretef.com/');
+      
+    });
+  });
+})
 
 describe('verifyPath', () => {
   it('return is a function ', () => {

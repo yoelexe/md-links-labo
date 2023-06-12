@@ -7,11 +7,6 @@ const learnDirectory = (routePath) => {
   return fs.readdirSync(routePath);
 }
 
-// TODO: Leer el archivo
-/* const learnFile = (routePath) => {
-  return fs.readFile(routePath, 'utf-8');
-} */
-
 // TODO: Saber si es un directorio
 const checkDirectory = (routePath) => {
   const element= fs.statSync(routePath).isDirectory();
@@ -91,26 +86,10 @@ const getFile = (routePath) => {
   });
 };
 
-/* const ejemplo = [
-  'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\myfile.md',
-  'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-links-labo\\resource\\private\\other.md'
-] */
-
-
 const usingFlat = (path) => {
   const result = path.map(file => getFile(file))
   return Promise.all(result).then(res => res.flat())
 }
-
-/* getFile('./resource/myfile.md')
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error("Error al leer el archivo:", error);
-  }); */
-
-//console.log(getFile('../resource/myfile.md'))
 
 // TODO: Devoler las estadisticas de cada link con axios.get()
 const statsFile = (routePath) => {
@@ -118,7 +97,7 @@ const statsFile = (routePath) => {
 
   const viewLink = (link) => {
     return axios.get(link.href)
-      .then((response) => {
+    .then((response) => {
         const result = {
           href: link.href,
           text: link.text,
@@ -140,7 +119,6 @@ const statsFile = (routePath) => {
       });
   };
 
-  //? devuelve un nuevo Array
   const otherArray = routePath.map(viewLink);
 
   return Promise.all(otherArray)
@@ -149,36 +127,7 @@ const statsFile = (routePath) => {
       throw error;
     });
 };
-/* const routePath = [
-  {
-    href: 'https://miro.com/app/board/uXjVMWUhOO0=/',
-    text: 'Miro',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'
-  },
-  {
-    href: '#historia-de-usuario-2',
-    text: 'Historia de Usuario 2.',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'
-  },
-  {
-    href: 'https://github.com/yoelexe/',
-    text: 'Github',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'
-  },
-  {
-    href: 'https://www.adasdasdgfdyhgfretef.com/',
-    text: 'Google',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'
-  },
-];
 
-statsFile(routePath)
-  .then(results => {
-    console.log(results);
-  })
-  .catch(error => {
-    console.error('Error al procesar los enlaces:', error);
-  }); */
 
 // TODO: Función que retorne las estadisticas del enlace
 const getStats = (routePath) => {
@@ -216,49 +165,11 @@ const getBroke = (routePath) => {
   return total;
 };
 
-
-
-/* const routePath = [
-  {
-    href: '#historia-de-usuario-2',
-    text: 'Historia de Usuario 2.',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md',
-    status: 'error',
-    message: 'fail'
-  },
-  {
-    href: 'https://www.adasdasdgfdyhgfretef.com/',
-    text: 'Google',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md',
-    status: 'error',
-    message: 'fail'
-  },
-  {
-    href: 'https://miro.com/app/board/uXjVMWUhOO0=/',
-    text: 'Miro',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md',
-    status: 200,
-    message: 'ok'
-  },
-  {
-    href: 'https://github.com/yoelexe/',
-    text: 'Github',
-    file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md',
-    status: 200,
-    message: 'ok'
-  }
-]
-
-
-console.table(getBroke(routePath)) */
-
-// learnFile,
 module.exports = {
   learnDirectory,
   checkDirectory,
   checkFile,
   validateMd,
-  
   verifyPath,
   saveArray,
   getFile,
