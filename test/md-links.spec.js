@@ -14,21 +14,17 @@ jest.mock('axios');
 
 describe('statsFile', () => {
   test('statsFile should return an array of results', () => {
-    // Mockear la función axios.get
     axios.get = jest.fn();
   
-    // Configurar el comportamiento mock para la función axios.get
     axios.get
-      .mockResolvedValueOnce({ status: 200 }) // Mock para una respuesta exitosa (status 200)
-      .mockRejectedValueOnce({ response: { status: 404 } }) // Mock para una respuesta de error (status 404)
-      .mockRejectedValueOnce(new Error('Network Error')); // Mock para un error de red
+      .mockResolvedValueOnce({ status: 200 })
+      .mockRejectedValueOnce({ response: { status: 404 } })
+      .mockRejectedValueOnce(new Error('Error'));
   
-    // Llamar a la función statsFile
     return statsFile([
       { href: 'https://github.com/yoelexe/', text: 'Github', file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'},
       { href: 'https://www.adasdasdgfdyhgfretef.com/', text: 'Google', file: 'C:\\Users\\Hogar\\Desktop\\Laboratoria\\md-routePath-labo\\resource\\private\\other.md'}
     ]).then(result => {
-      // Verificar el resultado esperado
       expect(result).toEqual([
         {
           href: 'https://github.com/yoelexe/',
@@ -45,8 +41,6 @@ describe('statsFile', () => {
           message: 'fail'
         }
       ]);
-  
-      // Verificar que la función axios.get haya sido llamada con los argumentos esperados
       expect(axios.get).toHaveBeenCalledWith('https://github.com/yoelexe/');
       expect(axios.get).toHaveBeenCalledWith('https://www.adasdasdgfdyhgfretef.com/');
       
@@ -66,16 +60,6 @@ describe('verifyPath', () => {
     const result = verifyPath(__dirname)
     expect(result).toBe(__dirname)
   });
-  /* it('return la ruta absolute si es realtiva', () => {
-    const relativePath = '../resource/myfile.md'
-    const resolvedPath = '/myfile.md'
-
-    jest.spyOn(fs, 'resolve').mockReturnValue(resolvedPath)
-
-    const result = verifyPath(relativePath);
-    expect(result).toBe(resolvedPath)
-    path.resolve.mockRestore();
-  }) */
 }); 
 
 describe('saveArray', () => {
