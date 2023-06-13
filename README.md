@@ -32,7 +32,7 @@ algunas estadísticas.
 Ejecutar el siguiente comando:
 
 ```sh
-npm install mkr-links
+npm install krn-links
 ```
 
 ## 3. Guia de uso
@@ -40,7 +40,7 @@ npm install mkr-links
 Ejemplo de comando a ingresar: 
 
 ```sh
-mkr-links ./archive/myfile.md [--validate] [--stats] 
+krn-links ./archive/myfile.md [--validate] [--stats] 
 ```
 #### Argumentos
 
@@ -77,7 +77,7 @@ En el resultado se analizará el archivo markdown e imprime los links que vaya e
 Por ejemplo:
 
 ```sh
-$ mkr-links ./resource
+$ krn-links ./resource
 ```
 
 ![_resource](utils/_resource.png)
@@ -93,7 +93,7 @@ URL que responde ok, entonces consideraremos el link como _**'ok'**_ o de lo con
 Por ejemplo:
 
 ```sh
-$ mkr-links ./resource --validate
+$ krn-links ./resource --validate
 ```
 
 ![_validate](utils/_validate.png)
@@ -105,7 +105,7 @@ Si pasamos la opción `--stats` el output será un texto con estadísticas
 básicas sobre los links.
 
 ```sh
-$ mkr-links ./resource --stats
+$ krn-links ./resource --stats
 ```
 
 ![_stats](utils/_stats.png)
@@ -117,7 +117,7 @@ También podemos combinar `--stats` y `--validate` para obtener estadísticas qu
 Por ejemplo:
 
 ```sh
-$ mkr-links ./resource --stats --validate
+$ krn-links ./resource --stats --validate
 ```
 
 ![_both](utils/_both.png)
