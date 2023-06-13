@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "mkr-links",
   "version": "0.1.0",
   "engines": {
     "node": ">=16.x"
@@ -20,5 +20,21 @@
   },
   "devDependencies": {
     "jest": "^29.5.0"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoelexe/md-links-labo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoelexe/md-links-labo/issues"
+  },
+  "homepage": "https://github.com/yoelexe/md-links-labo#readme"
 }

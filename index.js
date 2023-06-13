@@ -18,7 +18,10 @@ const mdLinks = (path, options) => {
         }else if(options.stats && !options.validate ){
           resolve(getStats(response))
         }else if(options.stats && options.validate){
-          resolve(getBroke(response))
+          statsFile(response)
+          .then((broken) => {
+            resolve(getBroke(broken))
+          })
         }else {
           resolve(response)
         }
