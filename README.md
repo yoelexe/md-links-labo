@@ -2,10 +2,21 @@
 
 ## Índice
 
-* [1. Preámbulo](#1-preámbulo)
-* [2. Instalación](#2-instalación)
-* [3. Guia de uso](#3-guia-de-uso)
-* [4. Diagrama de flujo](#4-diagrama-de-flujo)
+- [📎 MdLinks](#-mdlinks)
+  - [Índice](#índice)
+  - [1. Preámbulo](#1-preámbulo)
+  - [2. Instalación](#2-instalación)
+  - [3. Guia de uso](#3-guia-de-uso)
+      - [Argumentos](#argumentos)
+      - [Valor de retorno](#valor-de-retorno)
+    - [Ejemplos de ejecución](#ejemplos-de-ejecución)
+    - [Options](#options)
+        - [`--validate`](#--validate)
+        - [`--stats`](#--stats)
+        - [`--stats` `--validate`](#--stats---validate)
+  - [4. Diagrama de flujo](#4-diagrama-de-flujo)
+  - [5. Libreria publicada](#5-libreria-publicada)
+  
 
 ***
 
@@ -83,7 +94,7 @@ $ krn-links ./resource
 ![_resource](utils/_resource.png)
 
 
-#### Options
+### Options
 
 ##### `--validate`
 
@@ -133,3 +144,7 @@ $ krn-links ./resource --stats --validate
 | Diagrama de cli  |
 | :----------: |
 | ![drm_cli](utils/drm_cli.jpeg) |
+
+## 5. Libreria publicada
+
+[ 📚 Link de la libreria publicada en npm](https://www.npmjs.com/package/krn-links)
