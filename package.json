@@ -1,5 +1,5 @@
 {
-  "name": "mkr-links",
+  "name": "krn-links",
   "version": "0.1.0",
   "engines": {
     "node": ">=16.x"
@@ -13,6 +13,7 @@
     "eslint": "^8.41.0",
     "fs": "^0.0.1-security",
     "jsdom": "^22.1.0",
+    "krn-links": "^0.1.0",
     "markdown-it": "^13.0.1",
     "node-fetch": "^3.3.1",
     "stylelint": "^15.6.2",
@@ -33,6 +34,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bin": {
+    "krn-links": "cli.js"
+  },
   "bugs": {
     "url": "https://github.com/yoelexe/md-links-labo/issues"
   },
